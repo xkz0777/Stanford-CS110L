@@ -18,6 +18,10 @@ fn main() {
     match &process {
         Some(p) => {
             p.print();
+            let child_processes = ps_utils::get_child_processes(p.pid).unwrap();
+            for child_process in child_processes {
+                child_process.print();
+            }
         }
         None => {
             println!(
